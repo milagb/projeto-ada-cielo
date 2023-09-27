@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { MatTableModule } from '@angular/material/table' 
+import { MatTableModule } from '@angular/material/table'; 
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { MatTableModule } from '@angular/material/table'
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

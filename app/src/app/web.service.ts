@@ -24,7 +24,8 @@ export interface Payment {
   minimumMDRAmmount:number,
   mdrTaxAmount:number,
   mdrFeeAmount:number,
-  status:string
+  status:string,
+  paginator: number;
 }
 
 @Injectable({
@@ -32,10 +33,33 @@ export interface Payment {
   })
   export class WebService {
     url: string = 'http://localhost:3000/payments';
-
+    page: Page = new Page();
     constructor(private http: HttpClient) { }
+    searchValue: string = '';
   
     getPayments(): Observable<Payment[]> {        
       return this.http.get<Payment[]>(this.url);
+    }
+
+    getPayment(): Observable<Payment[]> {
+      const params = new HttpParams()
+        .set('pageSize', this.page.size)
+        .set('search', this.searchValue)
+        .set('pageNumber', this.page.value);
+        
+      return this.http.get<Payment[]>(this.url, {params});
+    }
+    get isFirstPage(): boolean {
+      return this.page.value === 1;
+    }
+  
+    goToNextPage(): void {
+      this.page.value++;
+    }
+  
+    goToPreviousPage(): void {
+      if(this.page.value > 1) {
+        this.page.value--;
+      }
     }
   }

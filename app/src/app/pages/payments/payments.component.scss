@@ -1,115 +1,36 @@
-.container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    padding: 1rem;
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-mat-spinner {
-    grid-column: 2;
-    margin: 0 auto;
+th {
+    color: red
 }
 
-mat-card {
-    border-radius: .5rem;
+element.style {
+    color:red
 }
 
-mat-card img {
-    max-width: 100%;
+.mat-column-id {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-mat-card-content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-mat-card-content, mat-card-header {
-    padding: 1rem;
-}
-
-.actions {
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-    gap: 1rem;
-}
-
-#search-bar {
-    float: center;
-    text-align:center;
-    padding: 5px;
-    display: flex;
-    margin: 1rem;  
-}
-
-#search-button {
-    display: inline-block;
-    clear: both;
-    text-align:center;
-    display: flex;
-    margin:1rem;
-}
-
-div {
-    display: flex;
-    align-items: center;
-    margin: auto;
-    
-}
-
-.header {
-   margin: auto;
-   width: 50%;
-   border: 3px solid rgb(2, 51, 2);
-   padding: 10px;
-   text-align: center;
-   align-items: center;
-   right: 0px;  
-   border-radius: 25px;
-}
-
-h1 {
-    display: block;
-    font-size: 2em;
-    margin-top: 0.67em;
-    margin-bottom: 0.67em;
-    margin-left: 0;
-    margin-right: 0;
-    font-weight: bold;
-    color: coral;
-    padding: 0 70px 0 30px;
+.mat-column-merchantId {
+    width: 32px;
+    border-right: 1px solid currentColor;
+    padding-right: 24px;
+    text-align: center;
   }
 
-#dark-button {
-    background-color: plum;
-}
-
-.white-mode .name-card  {
-    color: white;
-}
-
-.white-mode .card-elements {
-    color: white;
-}
-
-.white-mode .top-div {
-    background-color: white;
-}
-
-.dark-mode .name-card {
-    color: white;
-}
-
-.dark-mode .card-elements {
-    color: white;
-}
-
-.dark-mode .card {
-    background-color: black;
-}
-
-.dark-mode .top-div {
-    background-color: black;
+.mat-mdc-header-cell mdc-data-table__header-cell cdk-header-cell cdk-column-id mat-column-id {
+    color: red;
 }
