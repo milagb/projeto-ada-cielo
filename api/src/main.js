@@ -13,7 +13,7 @@ function paginate(array, pageSize, pageNumber) {
 app.get("/payments", async (req, res) => {
     let payments = data.items
     const searchText = req.query.search?.toLocaleLowerCase()
-    const resultPaymentSearch = payments.filter(payment => searchText ? payment?.name?.toLowerCase().includes(searchText) : payment)
+    const resultPaymentSearch = payments.filter(payment => searchText ? payment?.id?.toLowerCase().includes(searchText) : payment)
     if (req.query?.pageSize || req.query?.pageNumber) {
         payments = paginate(resultPaymentSearch, req.query?.pageSize, req.query?.pageNumber)
     }
