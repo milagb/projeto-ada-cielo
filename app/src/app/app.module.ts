@@ -7,7 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table'; 
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-
+import { MatLabel } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
+    MatFormFieldModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path: '', loadComponent: () => import('./pages/payments/payments.component').then(c => c.PaymentsComponent)}
+  {path: '', loadComponent: () => import('./app.component').then(c => c.AppComponent)}
 ];
 
 @NgModule({

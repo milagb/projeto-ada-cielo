@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Page } from './core/models/page';
 import { AppComponent } from './app.component';
+import { MatLabel } from '@angular/material/form-field';
 
 export interface Payment {
   id: string, 
@@ -33,22 +34,23 @@ export interface Payment {
   })
   export class WebService {
     url: string = 'http://localhost:3000/payments';
-    page: Page = new Page();
-    constructor(private http: HttpClient) { }
-    searchValue: string = '';
-  
-    getPayments(): Observable<Payment[]> {        
-      return this.http.get<Payment[]>(this.url);
-    }
+    page: Page;
+    searchValue: string;
 
+    constructor(private http: HttpClient) {
+      this.page = new Page(); 
+      this.searchValue = '';
+     }
+    
     getPayment(): Observable<Payment[]> {
       const params = new HttpParams()
         .set('pageSize', this.page.size)
         .set('search', this.searchValue)
-        .set('pageNumber', this.page.value);
+        .set('pageNumber', this.page.value);        
         
       return this.http.get<Payment[]>(this.url, {params});
     }
+
     get isFirstPage(): boolean {
       return this.page.value === 1;
     }

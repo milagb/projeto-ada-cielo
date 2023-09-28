@@ -9,6 +9,9 @@ import { BehaviorSubject } from 'rxjs';
 import { NgZone } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'; 
 import { Data } from '@angular/router';
+import { MatSort } from '@angular/material/sort';
+import { MatLabel } from '@angular/material/form-field';
+import { MatFormField } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-root',
@@ -17,24 +20,25 @@ import { Data } from '@angular/router';
 })
 export class AppComponent {
   title = 'app';
-  
-  payment$ = this.web.getPayments();
+  payment$ = this.web.getPayment();
   itemName: string = '';
+  filteredData: Payment[] = [];
+  foundId: string | undefined;
   data: Payment[] = [];
+  datinha = new MatTableDataSource<Payment>(this.data);
+  payments$: BehaviorSubject<Payment[]> = new BehaviorSubject<Payment[]>([]); 
   
-  payments$: BehaviorSubject<Payment[]> = new BehaviorSubject<Payment[]>([]); // Use BehaviorSubject
   columnsToDisplay = ['id', 'merchantId', 'paymentNode', 'cnpjRoot', 'date', 'paymentType', 'cardBrand',
                       'authorizationCode', 'truncatedCardNumber', 'grossAmount', 'netAmount', 'terminal',
                       'administrationFee', 'channelCode', 'channel', 'withdrawAmount', 'minimumMDRAmmount',
                       'mdrTaxAmount', 'mdrFeeAmount', 'status']
 
-  // datinha = new MatTableDataSource<Payment>(this.data);
   constructor(public web: WebService, private ngZone: NgZone){
         this.web.getPayment().subscribe(x =>{
           this.data = x;
-          console.log(x);
+          this.payments$.next(x);
         })
-      }
+  }
 
   loadData() {
     this.web.getPayment().subscribe(
@@ -42,7 +46,6 @@ export class AppComponent {
         this.ngZone.run(() => {
           this.payments$.next(data);
           this.data = data; 
-          // this.datinha.data = data; 
         });
       }
     );
@@ -56,13 +59,12 @@ export class AppComponent {
   movePreviousPage() {
     this.web.goToPreviousPage();
     this.loadData();
+    
   }
   
   inputValue() {
-    console.log('Valor do input:', this.itemName);
     this.web.searchValue = this.itemName;
-    // this.payments$ = this.web.getPayments();
     this.web.page.value = 1;
-  }
-  
+    this.loadData();
+  }  
 }
