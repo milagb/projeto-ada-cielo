@@ -29,6 +29,11 @@ export interface Payment {
   paginator: number;
 }
 
+export interface PaymentsAndQuantity {
+  payments: Payment[], 
+  pageQuantity: number
+}
+
 @Injectable({
     providedIn: 'root'
   })
@@ -36,23 +41,29 @@ export interface Payment {
     url: string = 'http://localhost:3000/payments';
     page: Page;
     searchValue: string;
+    pageQuantity: number;
 
     constructor(private http: HttpClient) {
       this.page = new Page(); 
       this.searchValue = '';
+      this.pageQuantity = 1;
      }
     
-    getPayment(): Observable<Payment[]> {
+    getPayment(): Observable<PaymentsAndQuantity> {
       const params = new HttpParams()
         .set('pageSize', this.page.size)
         .set('search', this.searchValue)
-        .set('pageNumber', this.page.value);        
-        
-      return this.http.get<Payment[]>(this.url, {params});
+        .set('pageNumber', this.page.value); 
+
+      return this.http.get<PaymentsAndQuantity>(this.url, {params});
     }
 
     get isFirstPage(): boolean {
       return this.page.value === 1;
+    }
+
+    get isLastPage() : boolean {
+      return this.page.value === this.pageQuantity ;
     }
   
     goToNextPage(): void {

@@ -5,13 +5,14 @@ import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {AfterViewInit, ViewChild} from '@angular/core';
 import {MatSortModule} from '@angular/material/sort';
 import { PaymentsService } from './core/services/payments.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, throwIfEmpty } from 'rxjs';
 import { NgZone } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table'; 
 import { Data } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 import { MatLabel } from '@angular/material/form-field';
 import { MatFormField } from '@angular/material/form-field';
+import { PaymentsAndQuantity } from './web.service';
 
 @Component({
   selector: 'app-root',
@@ -20,13 +21,9 @@ import { MatFormField } from '@angular/material/form-field';
 })
 export class AppComponent {
   title = 'app';
-  payment$ = this.web.getPayment();
   itemName: string = '';
-  filteredData: Payment[] = [];
   foundId: string | undefined;
   data: Payment[] = [];
-  datinha = new MatTableDataSource<Payment>(this.data);
-  payments$: BehaviorSubject<Payment[]> = new BehaviorSubject<Payment[]>([]); 
   
   columnsToDisplay = ['id', 'merchantId', 'paymentNode', 'cnpjRoot', 'date', 'paymentType', 'cardBrand',
                       'authorizationCode', 'truncatedCardNumber', 'grossAmount', 'netAmount', 'terminal',
@@ -34,23 +31,23 @@ export class AppComponent {
                       'mdrTaxAmount', 'mdrFeeAmount', 'status']
 
   constructor(public web: WebService, private ngZone: NgZone){
-        this.web.getPayment().subscribe(x =>{
-          this.data = x;
-          this.payments$.next(x);
-        })
+    this.web.getPayment().subscribe(dataApi =>{
+      this.data = dataApi.payments;
+      this.web.pageQuantity = dataApi.pageQuantity;
+    })
   }
 
   loadData() {
     this.web.getPayment().subscribe(
-      (data: Payment[]) => {
+      (dataApi: PaymentsAndQuantity) => {
         this.ngZone.run(() => {
-          this.payments$.next(data);
-          this.data = data; 
+          this.data= dataApi.payments; 
+          this.web.pageQuantity = dataApi.pageQuantity;
         });
       }
     );
   }
-  
+
   moveNextPage() {
     this.web.goToNextPage(); 
     this.loadData();
@@ -59,12 +56,11 @@ export class AppComponent {
   movePreviousPage() {
     this.web.goToPreviousPage();
     this.loadData();
-    
   }
   
   inputValue() {
     this.web.searchValue = this.itemName;
     this.web.page.value = 1;
     this.loadData();
-  }  
+  } 
 }
