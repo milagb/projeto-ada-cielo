@@ -11,13 +11,15 @@ function paginate(array, pageSize, pageNumber) {
 }
 
 app.get("/payments", async (req, res) => {
-    let payments = data.items
+    let payments = data.items 
     const searchText = req.query.search?.toLocaleLowerCase()
-    const resultPaymentSearch = payments.filter(payment => searchText ? payment?.id?.toLowerCase().includes(searchText) : payment)
+    const resultPaymentSearch = payments.filter(payment => searchText ? payment?.id?.toLowerCase().includes(searchText) : payment);
+    let pageQuantity =  Math.ceil(resultPaymentSearch.length / req.query.pageSize); 
+
     if (req.query?.pageSize || req.query?.pageNumber) {
         payments = paginate(resultPaymentSearch, req.query?.pageSize, req.query?.pageNumber)
     }
-    setTimeout(() => res.json(payments), payments.length * 25)
+    setTimeout(() => res.json({payments, pageQuantity}), payments.length * 25)
 })
 
 app.listen(3000, () => {
