@@ -1,7 +1,7 @@
 <div class="header">
   <div class="busca">
     <h1 id="h1-cell">Payment Records</h1>
-    <input [(ngModel)]="itemName" id="search-bar" type="text" placeholder="Search ID">
+    <input matInput [(ngModel)]="itemName" id="search-bar" type="text" placeholder="Search ID">
     <button (click)="inputValue()" id="search-button" type="button" mat-raised-button>Search ID</button> 
   </div>
     <table mat-table [dataSource]="data" class="all-table">
