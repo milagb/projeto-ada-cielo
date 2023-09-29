@@ -1,13 +1,13 @@
-<div >
-  <div class="header">
-    <h1>Payment Records</h1>
+<div class="header">
+  <div class="busca">
+    <h1 id="h1-cell">Payment Records</h1>
     <input [(ngModel)]="itemName" id="search-bar" type="text" placeholder="Search...">
     <button (click)="inputValue()" id="search-button" type="button" mat-raised-button>Search ID</button> 
   </div>
-    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+    <table mat-table [dataSource]="data" class="all-table">
         <ng-container *ngFor="let column of columnsToDisplay; let i = index" [matColumnDef]="column">
-          <th mat-header-cell *matHeaderCellDef> {{ column | uppercase }} </th>
-          <td mat-cell *matCellDef="let element"> {{ element[column] }} </td>
+          <th id="table-header" mat-header-cell *matHeaderCellDef> {{ column | uppercase }} </th>
+          <td id="table-cell" mat-cell *matCellDef="let element"> {{ element[column] }} </td>
         </ng-container>
       
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>

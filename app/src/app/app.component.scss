@@ -1,113 +1,54 @@
-#header {
-    background-color: #009879;
+.busca {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.all-table{
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+#table-header {
+    background-color: #016b56;
     color: #ffffff;
     text-align: center;
 }
 
-#all-table{
-    border-spacing: 4px;
-}
-
-.mat-column-id {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+#table-cell {
     text-align: center;
+    color: #000000;
+    border-bottom: 1px solid #dddddd;
 }
 
-.mat-column-merchantId {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
+#h1-cell {
+    font-size: 40px;
+    font-weight: 600;
+    background-image: linear-gradient(to left, #042b09, #65c079);
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+  }
+
+tr:nth-child(even) {
+    background-color: #9ae0b7;
 }
 
-.mat-column-paymentNode {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
+#search-bar {
+    font-size: 20px;
+    font-weight: 600;
 }
-
-.mat-column-cnpjRoot {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-date {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-paymentType {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-cardBrand {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-authorizationCode {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-truncatedCardNumber {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-grossAmount {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-netAmount {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-terminal {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-administrationFee {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-channelCode {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-channel {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-withdrawAmount {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-minimumMDRAmmount{
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-mdrTaxAmount {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-mdrFeeAmount {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
-.mat-column-status {
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-}
-
 
 
 
